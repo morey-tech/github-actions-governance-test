@@ -1,0 +1,23 @@
+# Documentation: https://github.com/BirthdayResearch/oss-governance-bot
+name: Governance
+
+on:
+  pull_request_target:
+    types: [ synchronize, opened, labeled, unlabeled ]
+  issues:
+    types: [ opened, labeled, unlabeled ]
+  issue_comment:
+    types: [ created ]
+    
+# PR updates can happen in quick succession leading to this
+# workflow being trigger a number of times. This limits it
+# to one concurrent run per PR.
+concurrency:
+  group: '${{ github.workflow }}-${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+
+jobs:
+  governance:
+    name: Governance
+    runs-on: self-hosted
+    steps:
+      - uses: BirthdayResearch/oss-governance-bot@v3
