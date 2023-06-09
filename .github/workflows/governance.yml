@@ -16,6 +16,11 @@ concurrency:
   group: '${{ github.workflow }}-${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
 
 jobs:
+  echo-concurrency:
+    name: Governance
+    runs-on: ubuntu-latest
+    run: echo ${{ github.workflow }}-${{ github.event.pull_request.head.label || github.head_ref || github.ref }}
+
   governance:
     name: Governance
     runs-on: ubuntu-latest
