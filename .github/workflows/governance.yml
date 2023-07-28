@@ -20,7 +20,7 @@ jobs:
     name: Governance
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.workflow }}-${{ github.event.pull_request.head.label || github.head_ref || github.ref }}
+      - run: echo ${{ github.workflow }}-${{ github.event.pull_request.number || github.event.issue.number}}
       - run: echo ${{ github }}
 
   governance:
