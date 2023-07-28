@@ -14,6 +14,7 @@ on:
 # to one concurrent run per PR.
 concurrency:
   group: '${{ github.workflow }}-${{ github.event.pull_request.number || github.event.issue.number}}'
+  cancel-in-progress: true
 
 jobs:
   echo-concurrency:
